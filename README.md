@@ -458,6 +458,37 @@ db_tool = MyDatabaseTool("postgresql://localhost/mydb")
 default_registry.register(db_tool)
 ```
 
+```python
+from agent_coded_by_llm import BaseTool, ToolParameter, default_registry
+
+class SearchEngineTool(BaseTool):
+    """自定义搜索引擎工具"""
+
+    name = "search"
+    description = "Search the web for information.  Use this when you need to find current information or facts."
+    parameters = [
+        ToolParameter(
+            name="query",
+            type="string",
+            description="The search query"
+        ),
+        ToolParameter(
+            name="num_results",
+            type="integer",
+            description="Number of results to return",
+            required=False,
+            default=5
+        )
+    ]
+
+    def execute(self, query: str, num_results: int = 5) -> str:
+        # 模拟搜索结果
+        return f"[Search Mock] Top {num_results} results for '{query}':  ..."
+
+# 注册工具
+default_registry.register(SearchEngineTool())
+```
+
 ### 7.2 方式二：装饰器（推荐用于简单工具）
 
 ```python
@@ -491,6 +522,25 @@ def unit_converter(value: float, from_unit: str, to_unit:  str) -> str:
 
 # 装饰器返回工具实例，直接注册
 default_registry.register(unit_converter)
+```
+
+```python
+from agent_coded_by_llm import tool, ToolParameter, default_registry
+
+@tool(
+    name="translate",
+    description="Translate text between languages",
+    parameters=[
+        ToolParameter("text", "string", "The text to translate"),
+        ToolParameter("target_language", "string", "Target language code (e.g., 'en', 'zh', 'ja')")
+    ]
+)
+def translate_tool(text: str, target_language: str) -> str:
+    """翻译工具的模拟实现"""
+    return f"[Translation Mock] '{text}' translated to {target_language}:  ..."
+
+# 注册自定义工具
+default_registry.register(translate_tool)  # 装饰器返回的是工具实例
 ```
 
 ### 7.3 工具开发最佳实践

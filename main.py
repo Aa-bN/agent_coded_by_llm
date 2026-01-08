@@ -19,48 +19,6 @@ from agent_coded_by_llm import (
 )
 
 
-# ========== 自定义工具示例 ==========
-
-# 方式1: 继承 BaseTool 类
-class SearchEngineTool(BaseTool):
-    """自定义搜索引擎工具"""
-
-    name = "search"
-    description = "Search the web for information.  Use this when you need to find current information or facts."
-    parameters = [
-        ToolParameter(
-            name="query",
-            type="string",
-            description="The search query"
-        ),
-        ToolParameter(
-            name="num_results",
-            type="integer",
-            description="Number of results to return",
-            required=False,
-            default=5
-        )
-    ]
-
-    def execute(self, query: str, num_results: int = 5) -> str:
-        # 模拟搜索结果
-        return f"[Search Mock] Top {num_results} results for '{query}':  ..."
-
-
-# 方式2: 使用装饰器
-@tool(
-    name="translate",
-    description="Translate text between languages",
-    parameters=[
-        ToolParameter("text", "string", "The text to translate"),
-        ToolParameter("target_language", "string", "Target language code (e.g., 'en', 'zh', 'ja')")
-    ]
-)
-def translate_tool(text: str, target_language: str) -> str:
-    """翻译工具的模拟实现"""
-    return f"[Translation Mock] '{text}' translated to {target_language}:  ..."
-
-
 def setup_agent() -> ReActAgent:
     """
     设置并初始化 Agent
@@ -82,10 +40,6 @@ def setup_agent() -> ReActAgent:
 
     # 注册内置工具
     register_builtin_tools(default_registry)
-
-    # 注册自定义工具
-    default_registry.register(SearchEngineTool())
-    default_registry.register(translate_tool)  # 装饰器返回的是工具实例
 
     # 配置 Agent
     agent_config = AgentConfig(
