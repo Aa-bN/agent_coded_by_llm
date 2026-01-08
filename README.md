@@ -31,14 +31,14 @@ ReAct（Reasoning + Acting）是一种将推理和行动相结合的 Agent 模�
 
 ### 1.2 核心特性
 
-| 特性 | 描述 |
-|------|------|
-| 🔄 ReAct 模式 | 标准的 Thought-Action-Observation 循环 |
-| 📦 模块化设计 | LLM、Tool、Agent 各模块独立，易于扩展 |
-| 🌊 流式输出 | 支持实时流式响应，提升用户体验 |
-| 🔧 灵活的工具注册 | 支持类继承和装饰器两种方式注册工具 |
-| 🎯 DeepSeek 支持 | 开箱即用的 DeepSeek 模型支持 |
-| 📝 详细日志 | 可配置的详细执行日志 |
+| 特性 | 描述                                      |
+|------|-----------------------------------------|
+| 🔄 ReAct 模式 | 标准的 Thought-Action-Observation 循环       |
+| 📦 模块化设计 | LLM、Tool、Agent 各模块独立，易于扩展               |
+| 🌊 流式输出 | 支持实时流式响应，提升用户体验                         |
+| 🔧 灵活的工具注册 | 支持类继承和装饰器两种方式注册工具                       |
+| 🎯 DeepSeek 支持 | 开箱即用的 DeepSeek 模型支持（其他模型兼容openai接口即可使用） |
+| 📝 详细日志 | 可配置的详细执行日志                              |
 
 ### 1.3 项目结构
 
@@ -83,7 +83,7 @@ agent_coded_by_llm/
 ### 2.3 API 密钥
 
 需要获取 DeepSeek API 密钥：
-1. 访问 [DeepSeek 官网](https://platform.deepseek. com/)
+1. 访问 [DeepSeek 官网](https://platform.deepseek.com/)
 2. 注册账号并创建 API Key
 3. 记录 API Key 用于后续配置
 
@@ -97,8 +97,8 @@ agent_coded_by_llm/
 # 1.创建文件夹，作为PyCharm、VSCode等编辑器打开的项目根目录
 mkdir react_agents
 cd react_agents
-# 2.git下载解压
-  # 当前文件夹：react_agents(项目文件夹) - agent_coded_by_llm(包含1.3的项目结构)
+# 2.git克隆\下载，解压，重命名文件夹
+# 3.当前项目文件结构：react_agents(项目文件夹) - agent_coded_by_llm(包含1.3的项目结构)
 ```
 
 ### 3.2 创建虚拟环境（可选，推荐）
@@ -1010,9 +1010,3 @@ def main():
 if __name__ == "__main__": 
     main()
 ```
-
----
-
-**文档版本**:  v0.0.1  
-**最后更新**: 2026-01-07  
-**作者**: LLM
