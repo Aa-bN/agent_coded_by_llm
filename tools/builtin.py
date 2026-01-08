@@ -158,28 +158,6 @@ class WikipediaSearchTool(BaseTool):
             return f"搜索维基百科时出错: {str(e)}"
 
 
-class WeatherTool(BaseTool):
-    """
-    天气查询工具
-    注意：这是一个模拟实现，实际使用时需要接入真实天气 API
-    """
-
-    name = "weather"
-    description = "Get current weather information for a specified city."
-    parameters = [
-        ToolParameter(
-            name="city",
-            type="string",
-            description="The city name to get weather for"
-        )
-    ]
-
-    def execute(self, city: str) -> str:
-        """模拟天气查询"""
-        # 模拟实现，实际应该调用天气 API
-        return f"[Weather Mock] Weather in {city}:  Sunny, 25°C, Humidity: 60%.  (This is mock data)"
-
-
 def register_builtin_tools(registry=None):
     """
     注册所有内置工具到指定注册器
@@ -193,4 +171,3 @@ def register_builtin_tools(registry=None):
     registry.register(CalculatorTool())
     registry.register(DateTimeTool())
     registry.register(WikipediaSearchTool())
-    registry.register(WeatherTool())
